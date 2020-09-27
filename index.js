@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 //connect to mongoose
 const dbPath =
-  "mongodb+srv://MainUser:${Mongo_URI}@cluster0.rpkxp.mongodb.net/TestServer?retryWrites=true&w=majority";
+  "mongodb+srv://MainUser:${Mongo_URI}@cluster0.rpkxp.mongodb.net/$[database]?retryWrites=true&w=majority";
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 const mongo = mongoose.connect(dbPath, options);
 
