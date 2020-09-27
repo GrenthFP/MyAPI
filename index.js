@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 //connect to mongoose
 const dbPath =
-  "mongodb+srv://MainUser:HJVWaGebsGTrBukP@cluster0.rpkxp.mongodb.net/<dbname>?retryWrites=true&w=majority";
+  "mongodb+srv://MainUser:HJVWaGebsGTrBukP@cluster0.rpkxp.mongodb.net/TestServer?retryWrites=true&w=majority";
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 const mongo = mongoose.connect(dbPath, options);
 
