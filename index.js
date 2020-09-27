@@ -4,7 +4,8 @@ let bodyParser = require("body-parser");
 //import mongoose
 let mongoose = require("mongoose");
 let app = express();
-let apiPw = process.env.Mongo_URI;
+
+let Mongo_URI = process.env.Mongo_URI;
 //Import routes
 let apiRoutes = require("./routes");
 
@@ -18,8 +19,7 @@ app.use(
 app.use(bodyParser.json());
 
 //connect to mongoose
-const dbPath =
-  "mongodb+srv://MainUser:${Mongo_URI}@cluster0.rpkxp.mongodb.net/$[database]?retryWrites=true&w=majority";
+let dbPath = `mongodb+srv://General:${Mongo_URI}@cluster0.rpkxp.mongodb.net/<dbname>?retryWrites=true&w=majority`;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 const mongo = mongoose.connect(dbPath, options);
 
