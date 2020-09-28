@@ -21,9 +21,8 @@ exports.index = function (req, res) {
 exports.add = function (req, res) {
   var bio = new Bio();
   bio.name = req.body.name ? req.body.name : bio.name;
-  bio.email = req.body.email;
-  bio.phone = req.body.phone;
-  bio.address = req.body.address;
+  bio.class = req.body.class;
+  bio.rarity = req.body.rarity;
 
   //Save and check error
   bio.save(function (err) {
@@ -52,9 +51,8 @@ exports.update = function (req, res) {
   Bio.findById(req.params.bio_id, function (err, bio) {
     if (err) res.send(err);
     bio.name = req.body.name ? req.body.name : bio.name;
-    bio.email = req.body.email;
-    bio.phone = req.body.phone;
-    bio.address = req.body.address;
+    bio.class = req.body.class;
+    bio.rarity = req.body.rarity;
 
     //save and check errors
     bio.save(function (err) {
