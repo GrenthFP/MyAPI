@@ -15,9 +15,10 @@ var bioController = require("./bioController");
 // Bio routes
 router.route("/bio").get(bioController.index).post(bioController.add);
 
+router.route("/bio/getter").post(bioController.view);
 router
   .route("/bio/:bio_id")
-  .get(bioController.view)
+
   .patch(bioController.update)
   .put(bioController.update)
   .delete(bioController.delete);

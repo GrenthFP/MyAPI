@@ -38,8 +38,13 @@ exports.add = function async(req, res) {
 };
 
 // View Bio
-exports.view = function async(req, res) {
-  Bio.findById(req.params.bio_id, function (err, bio) {
+exports.view = async function (req, res) {
+  let requester = req.body.number;
+  console.log(req.body.number);
+  let currentUser = await Bio.findOne({ number: requester }, function (
+    err,
+    bio
+  ) {
     if (err) res.send(err);
     res.json({
       message: "Bio Details",
