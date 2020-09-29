@@ -2,8 +2,8 @@
 Bio = require("./bioModel");
 
 //For index
-exports.index = function (req, res) {
-  Bio.get(function (err, bio) {
+exports.index = function async(req, res) {
+  Bio.find(function (err, bio) {
     if (err)
       res.json({
         status: "error",
@@ -18,11 +18,13 @@ exports.index = function (req, res) {
 };
 
 //For creating new bio
-exports.add = function (req, res) {
+exports.add = function async(req, res) {
   var bio = new Bio();
   bio.name = req.body.name ? req.body.name : bio.name;
   bio.class = req.body.class;
   bio.rarity = req.body.rarity;
+  bio.number = req.body.number;
+  bio.link = req.body.link;
 
   //Save and check error
   bio.save(function (err) {
@@ -36,7 +38,7 @@ exports.add = function (req, res) {
 };
 
 // View Bio
-exports.view = function (req, res) {
+exports.view = function async(req, res) {
   Bio.findById(req.params.bio_id, function (err, bio) {
     if (err) res.send(err);
     res.json({
@@ -47,7 +49,7 @@ exports.view = function (req, res) {
 };
 
 // Update Bio
-exports.update = function (req, res) {
+exports.update = function async(req, res) {
   Bio.findById(req.params.bio_id, function (err, bio) {
     if (err) res.send(err);
     bio.name = req.body.name ? req.body.name : bio.name;

@@ -1,11 +1,13 @@
 let express = require("express");
 //import body parser
 let bodyParser = require("body-parser");
+const cors = require("cors");
 //import mongoose
 let mongoose = require("mongoose");
 let app = express();
 
-let Mongo_URI = process.env.Mongo_URI;
+//let Mongo_URI = process.env.Mongo_URI;
+let Mongo_URI = "uPMNnwVEstRLzE0c";
 //Import routes
 let apiRoutes = require("./routes");
 
@@ -17,6 +19,15 @@ app.use(
 );
 
 app.use(bodyParser.json());
+
+var whitelist = ["http://localhost:3000"];
+//test
+app.use(
+  cors({
+    origin: whitelist,
+    credentials: true,
+  })
+);
 
 //connect to mongoose
 let dbPath = `mongodb+srv://General:${Mongo_URI}@cluster0.rpkxp.mongodb.net/<dbname>?retryWrites=true&w=majority`;

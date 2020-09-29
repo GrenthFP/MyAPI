@@ -14,11 +14,15 @@ var bioSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  number: {
+    type: String,
+    required: true,
+  },
+  link: {
+    type: String,
+    required: true,
+  },
 });
 
 // Export Bio Model
 var Bio = (module.exports = mongoose.model("bio", bioSchema));
-
-module.exports.get = function (callback, limit) {
-  Bio.find(callback).limit(limit);
-};
