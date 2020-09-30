@@ -110,3 +110,16 @@ exports.deleter = function (req, res) {
     }
   );
 };
+
+exports.getinventory = async function (req, res) {
+  let data = await UserEntry.find({ username: req.body.username }, function (
+    err,
+    entries
+  ) {
+    if (err) res.send(err);
+    res.json({
+      message: "Entries",
+      data: entries,
+    });
+  });
+};
