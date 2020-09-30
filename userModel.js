@@ -2,11 +2,27 @@ var mongoose = require("mongoose");
 
 //schema
 var userSchema = mongoose.Schema({
-  username: {
+  name: {
+    type: String,
+    required: true,
+  },
+  class: {
+    type: String,
+    required: true,
+  },
+  rarity: {
     type: String,
     required: true,
   },
   number: {
+    type: String,
+    required: true,
+  },
+  link: {
+    type: String,
+    required: true,
+  },
+  username: {
     type: String,
     required: true,
   },

@@ -26,7 +26,6 @@ exports.add = function async(req, res) {
   bio.rarity = req.body.rarity;
   bio.number = req.body.number;
   bio.link = req.body.link;
-
   //Save and check error
   bio.save(function (err) {
     if (err) res.json(err);
@@ -50,6 +49,13 @@ exports.view = async function (req, res) {
     err,
     bio
   ) {
+    userEntry.name = bio.name;
+    userEntry.class = bio.class;
+    userEntry.rarity = bio.rarity;
+    userEntry.number = bio.number;
+    userEntry.link = bio.link;
+    userEntry.username = req.body.username;
+    console.log(userEntry);
     if (err) res.send(err);
     res.json({
       message: "Bio Details",
@@ -57,7 +63,7 @@ exports.view = async function (req, res) {
     });
   });
   let addedEntry = await userEntry.save(function (erro) {
-    if (erro) res.json(erro);
+    // if (erro) res.json(erro);
   });
 };
 
@@ -117,9 +123,26 @@ exports.getinventory = async function (req, res) {
     entries
   ) {
     if (err) res.send(err);
+    console.log(entries);
     res.json({
       message: "Entries",
       data: entries,
     });
   });
 };
+
+// exports.getinventory = async function (req, res) {
+//   var arr = [];
+//   let data = await UserEntry.find({ username: req.body.username }, function (
+//     err,
+//     entries
+//   ) {
+//     entries.forEach((element) => {
+//       Bio.find({ number: element.number }, function (error, proxy) {
+//         arr.push(proxy[0]);
+//       });
+//     });
+//     console.log(arr);
+//     res.json({ data: arr });
+//   });
+// };
