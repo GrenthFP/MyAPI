@@ -16,6 +16,7 @@ var bioController = require("./bioController");
 router.route("/bio").get(bioController.index).post(bioController.add);
 
 router.route("/bio/getter").post(bioController.view);
+router.route("/bio/deleter").post(bioController.deleter);
 router
   .route("/bio/:bio_id")
 

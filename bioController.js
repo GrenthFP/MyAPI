@@ -1,5 +1,6 @@
 //Import Bio Model
 Bio = require("./bioModel");
+UserEntry = require("./userModel");
 
 //For index
 exports.index = function async(req, res) {
@@ -40,7 +41,11 @@ exports.add = function async(req, res) {
 // View Bio
 exports.view = async function (req, res) {
   let requester = req.body.number;
-  console.log(req.body.number);
+  var userEntry = new UserEntry();
+  userEntry.username = req.body.username
+    ? req.body.username
+    : userEntry.username;
+  userEntry.number = requester;
   let currentUser = await Bio.findOne({ number: requester }, function (
     err,
     bio
@@ -50,6 +55,9 @@ exports.view = async function (req, res) {
       message: "Bio Details",
       data: bio,
     });
+  });
+  let addedEntry = await userEntry.save(function (erro) {
+    if (erro) res.json(erro);
   });
 };
 
@@ -77,6 +85,21 @@ exports.delete = function (req, res) {
   Bio.deleteOne(
     {
       _id: req.params.bio_id,
+    },
+    function (err, contact) {
+      if (err) res.send(err);
+      res.json({
+        status: "success",
+        message: "Bio Deleted",
+      });
+    }
+  );
+};
+
+exports.deleter = function (req, res) {
+  UserEntry.deleteOne(
+    {
+      _id: req.body._id,
     },
     function (err, contact) {
       if (err) res.send(err);
