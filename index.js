@@ -6,8 +6,8 @@ const cors = require("cors");
 let mongoose = require("mongoose");
 let app = express();
 
-//let Mongo_URI = process.env.Mongo_URI;
-let Mongo_URI = "uPMNnwVEstRLzE0c";
+let Mongo_URI = process.env.Mongo_URI;
+
 //Import routes
 let apiRoutes = require("./routes");
 
