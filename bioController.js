@@ -3,7 +3,7 @@ Bio = require("./bioModel");
 UserEntry = require("./userModel");
 
 //For index
-exports.index = function async(req, res) {
+exports.index = function (req, res) {
   Bio.find(function (err, bio) {
     if (err)
       res.json({
@@ -19,7 +19,7 @@ exports.index = function async(req, res) {
 };
 
 //For creating new bio
-exports.add = function async(req, res) {
+exports.add = function (req, res) {
   var bio = new Bio();
   bio.name = req.body.name ? req.body.name : bio.name;
   bio.class = req.body.class;
@@ -68,7 +68,7 @@ exports.view = async function (req, res) {
 };
 
 // Update Bio
-exports.update = function async(req, res) {
+exports.update = function (req, res) {
   Bio.findById(req.params.bio_id, function (err, bio) {
     if (err) res.send(err);
     bio.name = req.body.name ? req.body.name : bio.name;
