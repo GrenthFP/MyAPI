@@ -20,13 +20,10 @@ app.use(
 
 app.use(bodyParser.json());
 
-var whitelist = ["http://localhost:3000"];
+
 //test
 app.use(
-  cors({
-    origin: whitelist,
-    credentials: true,
-  })
+  cors()
 );
 
 //connect to mongoose
