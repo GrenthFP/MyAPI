@@ -53,7 +53,7 @@ exports.view = async function (req, res) {
     userEntry.number = bio.number;
     userEntry.link = bio.link;
     userEntry.username = req.body.username;
-    console.log(userEntry);
+    
     if (err) res.send(err);
     res.json({
       message: "Bio Details",
@@ -61,8 +61,9 @@ exports.view = async function (req, res) {
     });
   });
   let addedEntry = await userEntry.save(function (erro) {
-    // if (erro) res.json(erro);
+    if (erro) res.json(erro);
   });
+  console.log("saved")
 };
 
 // Update Bio
@@ -120,7 +121,7 @@ exports.getinventory = async function (req, res) {
     entries
   ) {
     if (err) res.send(err);
-    console.log(entries);
+    
     res.json({
       message: "Entries",
       data: entries,
