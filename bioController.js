@@ -60,12 +60,12 @@ exports.view = async function (req, res) {
       data: bio,
     });
   })
-  try{
+  
   let addedEntry = await userEntry.save(function (erro) {
     if (erro) res.json(erro);
   });
-  console.log("saved")}
-  catch(err){console.log(err)}
+  console.log("saved")
+  
 };
 
 // Update Bio
