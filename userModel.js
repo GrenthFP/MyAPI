@@ -10,10 +10,6 @@ var userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  rarity: {
-    type: String,
-    required: true,
-  },
   number: {
     type: String,
     required: true,

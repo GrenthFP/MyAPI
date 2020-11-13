@@ -23,7 +23,6 @@ exports.add = function (req, res) {
   var bio = new Bio();
   bio.name = req.body.name ? req.body.name : bio.name;
   bio.class = req.body.class;
-  bio.rarity = req.body.rarity;
   bio.number = req.body.number;
   bio.link = req.body.link;
   //Save and check error
@@ -51,7 +50,6 @@ exports.view = async function (req, res) {
   ) {
     userEntry.name = bio.name;
     userEntry.class = bio.class;
-    userEntry.rarity = bio.rarity;
     userEntry.number = bio.number;
     userEntry.link = bio.link;
     userEntry.username = req.body.username;
@@ -73,7 +71,6 @@ exports.update = function (req, res) {
     if (err) res.send(err);
     bio.name = req.body.name ? req.body.name : bio.name;
     bio.class = req.body.class;
-    bio.rarity = req.body.rarity;
 
     //save and check errors
     bio.save(function (err) {
