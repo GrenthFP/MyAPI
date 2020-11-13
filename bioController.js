@@ -44,7 +44,7 @@ exports.view = async function (req, res) {
     ? req.body.username
     : userEntry.username;
   userEntry.number = requester;
-  try{ let currentUser = await Bio.findOne({ number: requester }, function (
+  let currentUser = await Bio.findOne({ number: requester }, function (
     err,
     bio
   ) {
@@ -59,7 +59,7 @@ exports.view = async function (req, res) {
       message: "Bio Details",
       data: bio,
     });
-  })}catch(errorAlt){console.log(errorAlt)};
+  })
   try{
   let addedEntry = await userEntry.save(function (erro) {
     if (erro) res.json(erro);
