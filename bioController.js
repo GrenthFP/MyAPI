@@ -53,6 +53,7 @@ exports.view = async function (req, res) {
     userEntry.number = bio.number;
     userEntry.link = bio.link;
     userEntry.username = req.body.username;
+    console.log("found")
     
     if (err) res.send(err);
     res.json({
