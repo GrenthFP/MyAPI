@@ -55,7 +55,8 @@ exports.view = async function (req, res) {
     userEntry.username = req.body.username;
     console.log("found")
     
-    if (err) res.json({
+    if (err) res.json(err);
+    res.json({
       message: "Bio Details",
       data: bio,
     });
