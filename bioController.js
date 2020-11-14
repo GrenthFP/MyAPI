@@ -38,39 +38,28 @@ exports.add = function (req, res) {
 
 // View Bio
 exports.view = async function (req, res) {
-  let requester = req.body.number;
-  var userEntry = new UserEntry();
-  userEntry.username = req.body.username
-    ? req.body.username
-    : userEntry.username;
-  userEntry.number = requester;
-  try{
-  let currentUser = await Bio.findOne({ number: requester }, function (
-    err,
-    bio
-  ) {
-    userEntry.name = bio.name;
-    userEntry.class = bio.class;
-    userEntry.number = bio.number;
-    userEntry.link = bio.link;
-    userEntry.username = req.body.username;
-    console.log("found")
-    
-    if (err) res.json(err);
-    res.json({
-      message: "Bio Details",
-      data: bio,
-    });
-  })}catch(error){console.log(error)}
-  
-  try{
-  let addedEntry = await userEntry.save(function (erro) {
-    if (erro) res.json(erro);
-  });
-  console.log("saved")}
-  catch (error){console.log(error)}
-  
-};
+  const { number, username } = req.body
+
+  try {
+    let currrentUser = await Bio.findOne({ number: number })
+
+    await UserEntry.create({
+      name: currrentUser.name,
+      class: currrentUser.class,
+      number: currrentUser.number,
+      link: currrentUser.link,
+      username: username,
+    })
+
+    res.send({
+      message: 'Bio Details',
+      data: currrentUser,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({ message: 'Internal Server Error' })
+  }
+}
 
 // Update Bio
 exports.update = function (req, res) {
