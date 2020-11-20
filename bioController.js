@@ -82,7 +82,6 @@ exports.update = function (req, res) {
 // Delete Bio
 exports.delete = function (req, res) {
   const { number, username } = req.body
-
   try {
     console.log(req.data)
     UserEntry.deleteOne({ username:username, number: number })
