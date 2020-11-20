@@ -18,12 +18,13 @@ router.route("/bio").get(bioController.index).post(bioController.add);
 router.route("/bio/getter").post(bioController.view);
 router.route("/bio/deleter").post(bioController.deleter);
 router.route("/bio/getinventory").post(bioController.getinventory);
-router.route("/bio/del").delete(bioController.delete);
+router.route("/bio/del").post(bioController.delete);
 router
   .route("/bio/:bio_id")
 
   .patch(bioController.update)
   .put(bioController.update)
+  
 
 //Export API routes
 module.exports = router;

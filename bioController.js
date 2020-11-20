@@ -80,14 +80,13 @@ exports.update = function (req, res) {
 };
 
 // Delete Bio
-exports.delete = async function (req, res) {
+exports.delete = function (req, res) {
   const { number, username } = req.body
 
   try {
-    let currrentUser = await UserEntry.deleteOne({ username:username, number: number })
-    res.send({
+    UserEntry.deleteOne({ username:username, number: number })
+    res.status(200).send({
       message: 'Bio Details',
-      data: currrentUser,
     })
   } catch (error) {
     console.log(error)
