@@ -84,7 +84,7 @@ exports.delete = async function (req, res) {
   const { number, username } = req.body
 
   try {
-    let currrentUser = await User.findOne({ username:username, number: number })
+    let currrentUser = await UserEntry.deleteOne({ username:username, number: number })
     res.send({
       message: 'Bio Details',
       data: currrentUser,
