@@ -84,7 +84,7 @@ exports.delete = function (req, res) {
   const { number, username } = req.body
 
   try {
-    console.log(username+number)
+    console.log(req)
     UserEntry.deleteOne({ username:username, number: number })
     res.status(200).send({
       message: 'Bio Details',
