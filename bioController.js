@@ -80,20 +80,20 @@ exports.update = function (req, res) {
 };
 
 // Delete Bio
-exports.delete = function (req, res) {
-  Bio.deleteOne(
-    {
-      _id: req.params.bio_id,
-    },
-    function (err, contact) {
-      if (err) res.send(err);
-      res.json({
-        status: "success",
-        message: "Bio Deleted",
-      });
-    }
-  );
-};
+exports.delete = async function (req, res) {
+  const { number, username } = req.body
+
+  try {
+    let currrentUser = await User.findOne({ username:username, number: number })
+    res.send({
+      message: 'Bio Details',
+      data: currrentUser,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({ message: 'Internal Server Error' })
+  }
+}
 
 exports.deleter = function (req, res) {
   UserEntry.deleteOne(
