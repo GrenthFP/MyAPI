@@ -39,7 +39,7 @@ exports.add = function (req, res) {
 // View Bio
 exports.view = async function (req, res) {
   const { number, username } = req.body
-
+  console.log(username)
   try {
     let currrentUser = await Bio.findOne({ number: number })
 
@@ -80,11 +80,11 @@ exports.update = function (req, res) {
 };
 
 // Delete Bio
-exports.delete = function (req, res) {
+exports.delete = async function (req, res) {
   const { number, username } = req.body
   try {
     console.log(username)
-    UserEntry.deleteOne({ username:username, number: number })
+   await UserEntry.deleteOne({ username:username, number: number })
     res.status(200).send({
       message: 'Bio Details',
     })
